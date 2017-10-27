@@ -5,10 +5,12 @@ import {MatButtonModule, MatToolbarModule, MatSidenavModule,
   MatIconModule, MatListModule, MatMenuModule} from "@angular/material";
 
 import { AppComponent } from './app.component';
+import {DahubMenuComponent} from './menu/menu.component';
 
 @NgModule({
+  id: 'app-module',
   declarations: [
-    AppComponent
+    AppComponent, DahubMenuComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MatSidenavModule,

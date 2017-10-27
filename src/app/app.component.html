@@ -1,33 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
+
+<dahub-menu (sidenav)="sidenav.toggle()"></dahub-menu>
 <mat-sidenav-container>
-  
-      <mat-toolbar color="primary">
-          <button mat-icon-button (click)="sidenav.toggle()">
-              <mat-icon>menu</mat-icon>
-          </button>
-          <button mat-button  style="width: 200px;">DAHUB ADMIN</button>
-          <button mat-button  style="width: 100px;">Login</button>
-          <button mat-button  style="width: 100px;">Register</button>
-          <button mat-icon-button>
-              <mat-icon>contacts</mat-icon>
-          </button>
-          <button mat-icon-button>
-              <mat-icon>help</mat-icon>
-          </button>
-  
-          <span class="app-toolbar-filler"></span>
-  
-          <mat-toolbar-row>
-              <span>Gestion Administrative</span>
-              <mat-icon class="app-top-icon">verified_user</mat-icon>
-          </mat-toolbar-row>
-  
-  
-  
-      </mat-toolbar>
-  
-      <!-- END -->
-  
+
       <mat-sidenav #sidenav mode="side" opened="true">
           <mat-nav-list>
               <mat-list-item>
