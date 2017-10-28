@@ -11,7 +11,8 @@ export const routes: Routes = [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'home', loadChildren: 'app/dahub/home/home.module#HomeModule'},
       {path: 'dashboard', loadChildren: 'app/dahub/dashboard/dashboard.module#DashboardModule'},
-      {path: 'errors', loadChildren: 'app/dahub/errors/errors.module#ErrorsModule'}
+      {path: 'errors', loadChildren: 'app/dahub/errors/errors.module#ErrorsModule'},
+      {path: 'administrations/cnps', loadChildren: 'app/dahub/administrations/cnps/cnps.module#CnpsModule'}
       /*
       {path: 'cnps', loadChildren: 'app/dahub/cnps/cnps.module#CNPSModule'},
       {path: 'countries', loadChildren: 'app/dahub/countries/countries.module#CountryModule'},

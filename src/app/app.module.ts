@@ -12,6 +12,8 @@ import {appRouting} from "./app.routing";
 import {DashboardModule} from "./dahub/dashboard/dashboard.module";
 import {DahubModule} from "./dahub/dahub.module";
 import {ErrorsModule} from "./dahub/errors/errors.module";
+import {HomeModule} from "./dahub/home/home.module";
+import {CnpsModule} from "./dahub/administrations/cnps/cnps.module";
 
 
 @NgModule({
@@ -20,10 +22,10 @@ import {ErrorsModule} from "./dahub/errors/errors.module";
     AppComponent, DahubMenuComponent
   ],
   imports: [
-    appRouting,
-    BrowserModule, BrowserAnimationsModule, MatSidenavModule,RouterModule, DashboardModule,
+    appRouting,HomeModule, DashboardModule, DahubModule, ErrorsModule, CnpsModule,
+    BrowserModule, BrowserAnimationsModule, MatSidenavModule,RouterModule,
     MatButtonModule,MatToolbarModule, MatIconModule, MatListModule, MatMenuModule,
-    DahubModule, ErrorsModule
+
   ],
   exports:[
 

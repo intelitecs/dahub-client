@@ -4,7 +4,10 @@ import {ModuleWithProviders} from "@angular/core";
 
 export const routes: Routes = [
   {
-    path: '', component: HomeComponent
+    path: '', component: HomeComponent,
+    children:[
+      {path: '', component: HomeComponent}
+    ]
   }
 ];
 
