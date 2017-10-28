@@ -5,7 +5,7 @@ import {ErrorsComponent} from "./errors.component";
 import {errorsRouting} from "./errors.routing";
 
 @NgModule({
-  id: 'errors',
+  id: 'app-errors',
   imports: [
     CommonModule, errorsRouting
   ],

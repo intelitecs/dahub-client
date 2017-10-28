@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 @Component({
-  moduleId: 'dahub',
+  moduleId: 'app-dahub',
   selector: 'app-dahub',
   template: `
     <router-outlet></router-outlet>

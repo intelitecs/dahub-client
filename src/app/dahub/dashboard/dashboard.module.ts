@@ -8,7 +8,7 @@ import {
   MatGridListModule, MatIconModule, MatToolbarModule
 } from "@angular/material";
 @NgModule({
-  id: 'dashboard',
+  id: 'app-dashboard',
   imports: [
     CommonModule,
     MatCommonModule,

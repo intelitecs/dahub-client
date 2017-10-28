@@ -9,7 +9,7 @@ import {routing} from "./dahub.routing";
 
 
 @NgModule({
-  id: 'dahub',
+  id: 'app-dahub',
   declarations:[DahubComponent],
   imports:[
     CommonModule,routing, RouterModule

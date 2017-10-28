@@ -5,7 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {CnpsComponent} from "./cnps.component";
 
 @NgModule({
-  id: 'cnps',
+  id: 'app-cnps',
   imports:[
     CommonModule,cnpsRouting
   ],
