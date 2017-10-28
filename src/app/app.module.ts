@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import {MatButtonModule, MatToolbarModule, MatSidenavModule,
   MatIconModule, MatListModule, MatMenuModule} from "@angular/material";
 
-  import {RouterModule, Routes} from "@angular/router";
+  import {RouterModule} from "@angular/router";
 
 import { AppComponent } from './app.component';
 import {DahubMenuComponent} from './menu/menu.component';

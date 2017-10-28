@@ -1,15 +1,18 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
-const app = express(); 
+const app = express();
+const reload = require('reload');
 
 const debug = require('debug')('dahub-client:server');
 app.use(express.static(path.join(__dirname, 'dist')));
+
 const port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
 
 // create HTTP server.
 const server = http.createServer(app);
+
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -18,39 +21,50 @@ const server = http.createServer(app);
  server.listen(port, onListening);
  server.on('error', onError);
 
+// reload browser when code changes
+//reload(app);
+
+ /**
+ 	For all GET requests, send back index.html, so that PathLocationStrategy can be used.
+ */
+
+ app.get('/*', (request, response, next) => {
+ 	response.sendFile(path.join(__dirname + '/dist/index.html'));
+ });
+
  /**
  * Normalize a port into a number, string, or false.
  */
 
 function normalizePort(val) {
-    var port = parseInt(val, 10);
-  
+    const port = parseInt(val, 10);
+
     if (isNaN(port)) {
       // named pipe
       return val;
     }
-  
+
     if (port >= 0) {
       // port number
       return port;
     }
-  
+
     return false;
   }
-  
+
   /**
    * Event listener for HTTP server "error" event.
    */
-  
+
   function onError(error) {
     if (error.syscall !== 'listen') {
       throw error;
     }
-  
-    var bind = typeof port === 'string'
+
+    const bind = typeof port === 'string'
       ? 'Pipe ' + port
       : 'Port ' + port;
-  
+
     // handle specific listen errors with friendly messages
     switch (error.code) {
       case 'EACCES':
@@ -65,18 +79,18 @@ function normalizePort(val) {
         throw error;
     }
   }
-  
+
   /**
    * Event listener for HTTP server "listening" event.
    */
-  
+
   function onListening() {
-    var addr = server.address();
-    var bind = typeof addr === 'string'
+    const addr = server.address();
+    const bind = typeof addr === 'string'
       ? 'pipe ' + addr
       : 'port ' + addr.port;
-      
+
     debug('Listening on ' + bind);
     console.log('The server is running on ', server.address());
   }
-  
+

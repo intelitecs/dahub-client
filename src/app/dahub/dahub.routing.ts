@@ -4,12 +4,12 @@ import {ModuleWithProviders} from "@angular/core";
 
 export const routes: Routes = [
 
-
   {
-    path: 'dahub',
+    path: '',
     component: DahubComponent,
     children:[
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+      {path: '', redirectTo: 'home', pathMatch: 'full'},
+      {path: 'home', loadChildren: 'app/dahub/home/home.module#HomeModule'},
       {path: 'dashboard', loadChildren: 'app/dahub/dashboard/dashboard.module#DashboardModule'},
       {path: 'errors', loadChildren: 'app/dahub/errors/errors.module#ErrorsModule'}
       /*
