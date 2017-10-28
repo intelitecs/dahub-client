@@ -13,8 +13,9 @@ export const routes: Routes = [
       {path: 'dashboard', loadChildren: 'app/dahub/dashboard/dashboard.module#DashboardModule'},
       {path: 'errors', loadChildren: 'app/dahub/errors/errors.module#ErrorsModule'},
       {path: 'administrations/cnps', loadChildren: 'app/dahub/administrations/cnps/cnps.module#CnpsModule'},
-      {path: 'admin', loadChildren: 'app/dahub/admin/admin.module#AdminModule'},
-      {path: 'secure', loadChildren: 'app/dahub/secure/secure.module#SecureModule'}
+      {path: 'admin',  loadChildren: 'app/dahub/admin/admin.module#AdminModule'},
+      {path: 'secure', loadChildren: 'app/dahub/secure/secure.module#SecureModule'},
+      {path: 'helper', loadChildren: 'app/dahub/helper/helper.module#HelperModule'}
       /*
       {path: 'cnps', loadChildren: 'app/dahub/cnps/cnps.module#CNPSModule'},
       {path: 'countries', loadChildren: 'app/dahub/countries/countries.module#CountryModule'},

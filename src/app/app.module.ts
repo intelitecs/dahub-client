@@ -16,6 +16,7 @@ import {HomeModule} from "./dahub/home/home.module";
 import {CnpsModule} from "./dahub/administrations/cnps/cnps.module";
 import {AdminModule} from "./dahub/admin/admin.module";
 import {SecureModule} from "./dahub/secure/secure.module";
+import {HelperModule} from "./dahub/helper/helper.module";
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import {SecureModule} from "./dahub/secure/secure.module";
   ],
   imports: [
     appRouting,HomeModule, DashboardModule, DahubModule, ErrorsModule, CnpsModule, AdminModule,
-    BrowserModule, BrowserAnimationsModule, MatSidenavModule,RouterModule, SecureModule,
+    BrowserModule, BrowserAnimationsModule, MatSidenavModule,RouterModule, SecureModule, HelperModule,
     MatButtonModule,MatToolbarModule, MatIconModule, MatListModule, MatMenuModule,
 
   ],
