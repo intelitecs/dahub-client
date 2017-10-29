@@ -9,13 +9,18 @@ import { UsersManagerComponent } from './components/users-manager/users-manager.
 import { CountriesManagerComponent } from './components/countries-manager/countries-manager.component';
 import { CytiesManagerComponent } from './components/cyties-manager/cyties-manager.component';
 import { RolesManagerComponent } from './components/roles-manager/roles-manager.component';
+import { CompaniesManagerComponent } from './components/companies-manager/companies-manager.component';
+import {CompanyComponent} from "./components/companies-manager/company/company.component";
+import {CompaniesListComponent} from "./components/companies-manager/companies-list/companies-list.component";
+import {CompanyFormComponent} from "./components/companies-manager/company-form/company-form.component";
 
 @NgModule({
   id: 'app-admin',
   imports:[CommonModule, RouterModule, adminRouting],
   exports:[],
   providers:[],
-  declarations:[AdminComponent, DashboardComponent, ProfilesManagerComponent, UsersManagerComponent, CountriesManagerComponent, CytiesManagerComponent, RolesManagerComponent],
+  declarations:[AdminComponent, DashboardComponent, ProfilesManagerComponent, UsersManagerComponent, CountriesManagerComponent, CytiesManagerComponent,
+    RolesManagerComponent, CompaniesManagerComponent,CompanyFormComponent, CompaniesListComponent, CompanyComponent],
   entryComponents:[],
   bootstrap:[AdminComponent]
 })

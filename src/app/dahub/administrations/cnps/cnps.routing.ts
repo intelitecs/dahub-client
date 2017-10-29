@@ -7,12 +7,8 @@ export const routes: Routes = [
   {
     path: '', component:CnpsComponent,
     children:[
-      {
-        path: '', component: DashboardComponent, pathMatch: 'full'
-      },
-      {
-        path: 'dashboard', component: DashboardComponent
-      }
+      {path: '', component: DashboardComponent, pathMatch: 'full'},
+      {path: 'dashboard', component: DashboardComponent},
     ]
   }
 ];

@@ -7,6 +7,10 @@ import {CountriesManagerComponent} from "./components/countries-manager/countrie
 import {ProfilesManagerComponent} from "./components/profiles-manager/profiles-manager.component";
 import {UsersManagerComponent} from "./components/users-manager/users-manager.component";
 import {RolesManagerComponent} from "./components/roles-manager/roles-manager.component";
+import {CompaniesManagerComponent} from "./components/companies-manager/companies-manager.component";
+import {CompaniesListComponent} from "./components/companies-manager/companies-list/companies-list.component";
+import {CompanyComponent} from "./components/companies-manager/company/company.component";
+import {CompanyFormComponent} from "./components/companies-manager/company-form/company-form.component";
 
 export const routes: Routes = [
   {
@@ -18,6 +22,17 @@ export const routes: Routes = [
       {path: 'profiles-manager', component: ProfilesManagerComponent},
       {path: 'users-manager', component: UsersManagerComponent},
       {path: 'roles-manager', component: RolesManagerComponent},
+      {
+        path: 'companies-manager', component: CompaniesManagerComponent,
+        children:[
+          {path: '', component: CompaniesListComponent, pathMatch: 'full'},
+          {path: 'new', component: CompanyFormComponent},
+          {path: 'companies', component: CompaniesListComponent},
+          {path: ':id', component: CompanyComponent},
+
+
+        ]
+      },
     ]
   }
 ];

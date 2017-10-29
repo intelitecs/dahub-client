@@ -15,9 +15,8 @@ export const routes: Routes = [
       {path: 'administrations/cnps', loadChildren: 'app/dahub/administrations/cnps/cnps.module#CnpsModule'},
       {path: 'admin',  loadChildren: 'app/dahub/admin/admin.module#AdminModule'},
       {path: 'secure', loadChildren: 'app/dahub/secure/secure.module#SecureModule'},
-      {path: 'helper', loadChildren: 'app/dahub/helper/helper.module#HelperModule'}
+      {path: 'helper', loadChildren: 'app/dahub/helper/helper.module#HelperModule'},
       /*
-      {path: 'cnps', loadChildren: 'app/dahub/cnps/cnps.module#CNPSModule'},
       {path: 'countries', loadChildren: 'app/dahub/countries/countries.module#CountryModule'},
       {path: 'dacloud', loadChildren: 'app/dahub/dacloud/dacloud.module#DacloudModule'},
       {path: 'dabilling', loadChildren: 'app/dahub/dabilling/dabilling.module#DaBillingModule'},
