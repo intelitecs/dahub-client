@@ -6,24 +6,26 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import {RouterModule} from "@angular/router";
 import {secureRouting} from "./secure.routing";
 import {SecureComponent} from "./secure.component";
+import {SecureService} from "./secure.service";
+import {MatDialogModule} from "@angular/material";
 
 @NgModule({
   id: 'app-secure',
   imports: [
-    CommonModule, RouterModule, secureRouting
+    CommonModule, RouterModule, secureRouting, MatDialogModule
   ],
   declarations: [SecureComponent,LoginComponent, RegisterComponent, ResetPasswordComponent],
   exports: [
 
   ],
 
-  providers:[],
+  providers:[SecureService],
 
   entryComponents:[
-
+    RegisterComponent, LoginComponent
   ],
   bootstrap:[
-
+    SecureComponent
   ],
 
 })

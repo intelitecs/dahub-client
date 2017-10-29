@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {MatButtonModule, MatToolbarModule, MatSidenavModule,
-  MatIconModule, MatListModule, MatMenuModule} from "@angular/material";
+import {
+  MatButtonModule, MatToolbarModule, MatSidenavModule,
+  MatIconModule, MatListModule, MatMenuModule, MatDialogModule, MatDialogRef
+} from "@angular/material";
 
   import {RouterModule} from "@angular/router";
 
@@ -17,6 +19,7 @@ import {CnpsModule} from "./dahub/administrations/cnps/cnps.module";
 import {AdminModule} from "./dahub/admin/admin.module";
 import {SecureModule} from "./dahub/secure/secure.module";
 import {HelperModule} from "./dahub/helper/helper.module";
+import {AppService} from "./app.service";
 
 
 @NgModule({
@@ -25,15 +28,19 @@ import {HelperModule} from "./dahub/helper/helper.module";
     AppComponent, DahubMenuComponent
   ],
   imports: [
-    appRouting,HomeModule, DashboardModule, DahubModule, ErrorsModule, CnpsModule, AdminModule,
-    BrowserModule, BrowserAnimationsModule, MatSidenavModule,RouterModule, SecureModule, HelperModule,
-    MatButtonModule,MatToolbarModule, MatIconModule, MatListModule, MatMenuModule,
+    appRouting,HomeModule, DashboardModule, DahubModule,
+    ErrorsModule, CnpsModule, AdminModule,
+    BrowserModule, BrowserAnimationsModule,
+    MatSidenavModule,RouterModule, SecureModule,
+    HelperModule, MatButtonModule,MatToolbarModule,
+    MatIconModule, MatListModule, MatMenuModule,
+    MatDialogModule
 
   ],
   exports:[
 
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

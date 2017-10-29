@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialogRef} from "@angular/material";
 
 @Component({
   moduleId: 'app-secure',
@@ -8,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  public title: string;
+  public message: string;
+
+  constructor(public dialogRef: MatDialogRef<RegisterComponent>) { }
 
   ngOnInit() {
   }
