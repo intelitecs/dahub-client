@@ -1,2 +1,34 @@
-<h1 mat-dialog-title>{{title | uppercase}} - {{message | uppercase}}</h1>
-<h1>Dahub Login Page</h1>
+
+<div>
+  <p mat-dialog-title>{{title | uppercase}} <br/> {{message}}</p>
+  <form [formGroup]="loginForm" (ngSubmit)="processLogin(loginForm.getRawValue())">
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-select  placeholder="Profile Utilisateur" [formControl]="userProfile">
+          <mat-option  *ngFor="let connexion of userProfiles" [value]="connexion.type">{{connexion.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">{{'login:' | uppercase}}</label>
+      <input placeholder="Login" class="form-control" [formControl]="username" required size="40" autocomplete="false">
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">{{'Mot de passe:' | uppercase}}</label>
+      <input placeholder="Mot de passe" type="password" class="form-control" [formControl]="password" required size="40" autocomplete="false">
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <button class="form-control" mat-raised-button color="primary" (click)="dialogRef.close(true)" [disabled]="!loginForm.valid" type="submit">Connexion</button>
+      </div>
+      <div class="col-md-2">
+        <button class="form-control" type="reset" mat-raised-button color="warn" (click)="dialogRef.close(false)">Annuler</button>
+      </div>
+    </div>
+  </form>
+</div>

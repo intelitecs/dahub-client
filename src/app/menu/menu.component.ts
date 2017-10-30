@@ -25,9 +25,9 @@ export class DahubMenuComponent {
     }
 
     openLoginForm(){
-      this.appService.login("Login", "Login");
+      this.appService.login("Authentification", "Renseignez vos identifiants pour connecter");
     }
     openRegisterForm(){
-      this.appService.register("Register", "Register");
+      this.appService.register("Inscription", "Renseignez le formulaire suivant pour vous inscrire.");
     }
 }

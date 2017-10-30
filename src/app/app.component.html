@@ -32,8 +32,12 @@
 
           </mat-nav-list>
       </mat-sidenav>
-      <h1>Bienvenu sur la plateforme {{name}}</h1>
-      <router-outlet></router-outlet>
+      <!--<h1> {{pageTitle}}</h1> -->
+      <div class="app-content">
+        <router-outlet></router-outlet>
+      </div>
+
+      <!-- footer -->
 
 
   </mat-sidenav-container>

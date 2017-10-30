@@ -1,2 +1,76 @@
-<h1 mat-dialog-title>{{title | uppercase}} - {{message | uppercase}}</h1>
-<h1>Dahub Register Page</h1>
+<div>
+  <p mat-dialog-title>{{title | uppercase}} <br/> {{message}}</p>
+  <form [formGroup]="company" (ngSubmit)="processUserRegistration(company.getRawValue())">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">{{'Pays:' | uppercase}}</label>
+          <input size="60" class="form-control" placeholder="Pays" [matAutocomplete] = "countryAutocompleteTemplateRefId" [formControl]="country">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">{{'forme juridique:' | uppercase}}</label>
+          <input class="form-control" size="60" [formControl]="form" [matAutocomplete]="companyFormAutocompleteTemplateRefId" required
+                 placeholder="Forme Juridique">
+        </div>
+      </div>
+    </div>
+    <mat-autocomplete #countryAutocompleteTemplateRefId="matAutocomplete">
+      <mat-option (onSelectionChange)="onCountrySelect($event.source.value)" *ngFor="let country of filteredCountries | async" [value]="country.code">
+        {{country.name}}
+      </mat-option>
+    </mat-autocomplete>
+
+
+    <mat-autocomplete #companyFormAutocompleteTemplateRefId="matAutocomplete">
+      <mat-option *ngFor="let choice of companyTypes" [value]="choice.code">
+        {{ choice.code }} - {{ choice.designation}}
+      </mat-option>
+    </mat-autocomplete>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">{{'raison sociale:'| uppercase}}</label>
+          <input class="form-control" [formControl]="socialReason"  required placeholder="Raison sociale" size="60">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">{{'adresse email:' | uppercase}}</label>
+          <input class="form-control" [formControl]="email" type="email" required placeholder="Adresse email" size="60">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">{{'Mot de passe:'| uppercase}}</label>
+          <input class="form-control" [formControl]="password" type="password" required placeholder="Mot de passe" size="60">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">{{'Confirmation du Mot de passe:'| uppercase}}</label>
+          <input class="form-control" [formControl]="password_confirmation" type="password" required placeholder="Confirmation du Mot de passe" size="60">
+        </div>
+      </div>
+
+    </div>
+
+    <span *ngIf="!passwords.valid && (password.touched || password_confirmation.touched)" class="help-block sub-little-text">Les mots de passe ne correspondent pas!</span>
+
+    <br/>
+    <div class="row">
+      <div class="col-md-8">
+        <button mat-raised-button color="primary" (click)="dialogRef.close(true)" [disabled]="!company.valid" >Enregistrer</button>&nbsp;&nbsp;&nbsp;
+        <button (click)="dialogRef.close(false)" type="reset" color="warn" mat-raised-button>Annuler</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>

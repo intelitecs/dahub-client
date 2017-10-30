@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  name = 'Dahub Admin';
+  pageTitle = 'Bienvenu sur Dahub Admin';
 }
