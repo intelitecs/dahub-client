@@ -8,6 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  public links: Array<any> = [
+    {"route":"dashboard", "label":"Dashboard"},
+    {"route":"situation", "label":"Situation"},
+    {"route":"personnel", "label":"Gestion du Personnel"},
+    //{"route":"simulation","label":"Simulations"}
+  ];
+
   constructor() { }
 
   ngOnInit() {

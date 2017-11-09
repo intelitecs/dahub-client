@@ -23,11 +23,11 @@ export const routes: Routes = [
       {path: 'users-manager', component: UsersManagerComponent},
       {path: 'roles-manager', component: RolesManagerComponent},
       {
-        path: 'companies-manager', component: CompaniesManagerComponent,
+        path: 'company-manager', component: CompaniesManagerComponent,
         children:[
           {path: '', component: CompaniesListComponent, pathMatch: 'full'},
           {path: 'new', component: CompanyFormComponent},
-          {path: 'companies', component: CompaniesListComponent},
+          {path: 'company', component: CompaniesListComponent},
           {path: ':id', component: CompanyComponent},
 
 
