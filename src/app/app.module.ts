@@ -32,7 +32,8 @@ export interface RESTConfig{
 }
 
 export const APPCONFIG:RESTConfig = {
-  REST_SERVER_HOST: environment.production ? 'https://dahub.herokuapp.com' : 'http://localhost:5000',
+  //REST_SERVER_HOST: environment.production ? 'https://dahub.herokuapp.com' : 'http://localhost:5000',
+  REST_SERVER_HOST: 'https://dahub.herokuapp.com',
   APP_ID: '1',
   APP_SECRET:'imhotep'
 };
