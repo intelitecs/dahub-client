@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {EmailValidator, EqualPasswordsValidator} from "../../../app.validators";
+import {CommonService} from "../../../common.service";
+import "rxjs/add/operator/map";
+import {AppService} from "../../../app.service";
+import {SecureService} from "../secure.service";
+import {DialogService} from "../../dialog/dialog.services";
 
 @Component({
   moduleId: 'app-secure',
@@ -24,17 +29,17 @@ export class RegisterComponent implements OnInit {
   public email: AbstractControl;
   public passwords: FormGroup;
   public companyTypes: Array<any> = [];
-  public submitted = false;
-  stateCtrl: FormControl;
-  countryCtrl: FormControl;
-  filteredStates: any;
+  public selectedCompanyType: any;
   filteredCountries: any;
   public countries: Array<any> = [];
-  public userProfile;
+  public selectedCountry: any;
   pageTitle = "Inscription sur Dahub Admin";
 
-  constructor(public dialogRef: MatDialogRef<RegisterComponent>,
-              private fb: FormBuilder, private router: Router) {
+
+  constructor(public dialogRef: MatDialogRef<RegisterComponent>, private dialogService: DialogService,
+              private fb: FormBuilder, private router: Router,
+              private service: CommonService, private secureService: SecureService) {
+
     this.company = fb.group({
       'country': ['', Validators.required],
       'socialReason': ['', Validators.compose([Validators.required, Validators.minLength(6)])],
@@ -48,15 +53,12 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initCompanyTypes();
+    this.loadCompanyTypes();
+    this.loadCountries();
     this.initRegisterForm();
+
   }
-  initCompanyTypes(){
-    this.companyTypes.push({'code': 'SI', 'designation': 'Société Individuelle'});
-    this.companyTypes.push({'code': 'SARL', 'designation': 'Société A Responsabilité Limité'});
-    this.companyTypes.push({'code': 'SA', 'designation': 'Société Anonyme'});
-    //this.loadAllCountries();
-  }
+
 
   initRegisterForm(){
     this.country = this.company.controls['country'];
@@ -68,11 +70,74 @@ export class RegisterComponent implements OnInit {
     this.password_confirmation = this.passwords.controls['password_confirmation'];
   }
 
-  public onCountrySelect(country) {
-    console.log(country);
+  public onCountrySelect(countryName) {
+    console.log(countryName);
+    const selectedCountry = this.service.getCountryByName(countryName, this.countries)[0];
+    this.selectedCountry = selectedCountry;
+    console.log("selected country: ", this.selectedCountry);
+
   }
 
-  processUserRegistration(data){
-    console.log("data: ", data);
+ public onCompanyTypeSelect(companyType){
+   console.log(companyType);
+   const selectedForm = this.service.getJuridicFormByName(companyType, this.companyTypes)[0];
+   this.selectedCompanyType = selectedForm;
+   console.log("selected form: ", this.selectedCompanyType);
+ }
+
+  loadCountries(){
+    this.service.getCountries().subscribe((countries) =>{
+      console.log("countries: ", countries);
+      this.countries = countries;
+
+      this.filteredCountries = this.country.valueChanges.map(name => this.filterCountries(name));
+    });
   }
+
+  loadCompanyTypes(){
+    this.service.getJuridicForms().subscribe((forms) => {
+      console.log("company forms: ", forms);
+      this.companyTypes = forms;
+    });
+  }
+
+  processUserRegistration(values){
+    console.log("data: ", values);
+    const company = {};
+    const user = {};
+    company['country_id'] = this.selectedCountry.id;
+    company['juridic_form_id'] = this.selectedCompanyType.id;
+    company['email'] = values['email'];
+    company['socialReason'] = values['socialReason'];
+    company['password'] = values['passwords']['password'];
+    company['password_confirmation'] = values['passwords']['password_confirmation'];
+
+    console.log("company: ", company);
+    console.log("user: ", user);
+
+    this.service.createCompany(company).subscribe((response_company) =>{
+
+      if (response_company){
+        this.dialogService.confirm("Inscription", "Votre entreprise a été inscrite avec succès!").subscribe((result) => {
+          if(result){
+            console.log("created company: ", response_company);
+          }
+        });
+      }
+    }, (error) =>{
+      console.error(error);
+    }, ()=>{
+      console.log("Company created with account!")
+    });
+
+
+  }
+
+  filterCountries(name: string){
+    return name ? this.countries.filter((country) => country.name.toLowerCase().indexOf(name) === 0 || country.name.indexOf(name)=== 0 ) : this.countries;
+  }
+
+
+
+
 }

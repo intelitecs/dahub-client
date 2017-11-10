@@ -17,15 +17,15 @@
       </div>
     </div>
     <mat-autocomplete #countryAutocompleteTemplateRefId="matAutocomplete">
-      <mat-option (onSelectionChange)="onCountrySelect($event.source.value)" *ngFor="let country of filteredCountries | async" [value]="country.code">
+      <mat-option (onSelectionChange)="onCountrySelect($event.source.value)" *ngFor="let country of filteredCountries | async" [value]="country.name">
         {{country.name}}
       </mat-option>
     </mat-autocomplete>
 
 
     <mat-autocomplete #companyFormAutocompleteTemplateRefId="matAutocomplete">
-      <mat-option *ngFor="let choice of companyTypes" [value]="choice.code">
-        {{ choice.code }} - {{ choice.designation}}
+      <mat-option *ngFor="let choice of companyTypes" (onSelectionChange)="onCompanyTypeSelect($event.source.value)" [value]="choice.name">
+        {{ choice.name }}
       </mat-option>
     </mat-autocomplete>
 
@@ -66,8 +66,8 @@
     <br/>
     <div class="row">
       <div class="col-md-8">
-        <button mat-raised-button color="primary" (click)="dialogRef.close(true)" [disabled]="!company.valid" >Enregistrer</button>&nbsp;&nbsp;&nbsp;
-        <button (click)="dialogRef.close(false)" type="reset" color="warn" mat-raised-button>Annuler</button>
+        <button mat-raised-button color="primary" (click)="dialogRef.close(true)"  [disabled]="!company.valid" >Enregistrer</button>&nbsp;&nbsp;&nbsp;
+        <button type="reset" color="warn" (click)="dialogRef.close(false)" mat-raised-button>Annuler</button>
       </div>
     </div>
 

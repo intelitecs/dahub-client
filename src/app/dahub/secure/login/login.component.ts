@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialogRef} from "@angular/material";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {SecureService} from "../secure.service";
 import {LocalStorageService} from "ngx-webstorage";
+import {MatDialogRef} from "@angular/material/dialog";
+
 
 @Component({
   moduleId: 'app-secure',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   public logged_in: boolean = false;
 
 
-  constructor(private localStorageService: LocalStorageService,public dialogRef:MatDialogRef<LoginComponent>, private fb: FormBuilder, private router: Router, private secureService: SecureService) {
+  constructor(public dialogRef: MatDialogRef<LoginComponent>, private localStorageService: LocalStorageService, private fb: FormBuilder, private router: Router, private secureService: SecureService) {
     this.loginForm = this.fb.group({
       "email":["", [Validators.required]],
       "password":["", [Validators.required]],
@@ -65,6 +66,10 @@ export class LoginComponent implements OnInit {
       if (username){
         this.localStorageService.store('username', username);
       }
+
+
+
+
     });
   }
 

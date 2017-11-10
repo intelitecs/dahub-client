@@ -4,6 +4,7 @@ import {LoginComponent} from "../dahub/secure/login/login.component";
 import {RegisterComponent} from "../dahub/secure/register/register.component";
 import {AppService} from "../app.service";
 import {LocalStorageService} from "ngx-webstorage";
+import {SecureService} from "../dahub/secure/secure.service";
 
 
 @Component({
@@ -38,10 +39,11 @@ export class DahubMenuComponent  implements OnInit{
     }
 
     openLoginForm(){
-      this.appService.login("Authentification", "Renseignez vos identifiants pour connecter");
+
+      this.appService.showLoginForm("Authentification", "Renseignez vos identifiants pour connecter");
     }
     openRegisterForm(){
-      this.appService.register("Inscription", "Renseignez le formulaire suivant pour vous inscrire.");
+      this.appService.showRegisterForm("Inscription", "Renseignez le formulaire suivant pour vous inscrire.");
     }
 
     processLogout(){

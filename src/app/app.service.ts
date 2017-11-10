@@ -1,14 +1,16 @@
+import {Inject, Injectable} from "@angular/core";
+import {RegisterComponent} from "./dahub/secure/register/register.component";
 import {MatDialog, MatDialogRef} from "@angular/material";
-import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {LoginComponent} from "./dahub/secure/login/login.component";
-import {RegisterComponent} from "./dahub/secure/register/register.component";
+
 
 @Injectable()
 export class AppService{
-  constructor(private dialog: MatDialog){}
+  constructor(public dialog: MatDialog){
 
-  public login(title: string, message: string): Observable<boolean> {
+  }
+  public showLoginForm(title: string, message: string): Observable<boolean> {
     let dialogRef: MatDialogRef<LoginComponent>;
     dialogRef = this.dialog.open(LoginComponent, {
       height: "400px", width: "700px",
@@ -23,7 +25,7 @@ export class AppService{
 
   }
 
-  public register(title: string, message: string): Observable<boolean> {
+  public showRegisterForm(title: string, message: string): Observable<boolean> {
     let dialogRef: MatDialogRef<RegisterComponent>;
     dialogRef = this.dialog.open(RegisterComponent, {
       height: "450px", width: "900px",

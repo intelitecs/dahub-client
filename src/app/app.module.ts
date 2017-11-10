@@ -23,7 +23,9 @@ import {AppService} from "./app.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 //import {LocalStorageService} from "ngx-webstorage/dist/services";
 import {LocalStorageService} from "ngx-webstorage";
-import {environment} from "../environments/environment";
+import {CommonService} from "./common.service";
+import {SecureService} from "./dahub/secure/secure.service";
+import {DahubDialogModule} from "./dahub/dialog/dialog.module";
 
 export interface RESTConfig{
   REST_SERVER_HOST: string;
@@ -33,7 +35,8 @@ export interface RESTConfig{
 
 export const APPCONFIG:RESTConfig = {
   //REST_SERVER_HOST: environment.production ? 'https://dahub.herokuapp.com' : 'http://localhost:5000',
-  REST_SERVER_HOST: 'https://dahub.herokuapp.com',
+  //REST_SERVER_HOST: 'http://localhost:5000',
+  REST_SERVER_HOST: 'https://dahub.herokuapp.com', // production version
   APP_ID: '1',
   APP_SECRET:'imhotep'
 };
@@ -52,7 +55,7 @@ export const APPCONFIG:RESTConfig = {
     MatSidenavModule,RouterModule, SecureModule,
     HelperModule, MatButtonModule,MatToolbarModule,
     MatIconModule, MatListModule, MatMenuModule,
-    MatDialogModule, HttpClientModule
+    MatDialogModule, HttpClientModule, DahubDialogModule
 
   ],
   exports:[
@@ -61,6 +64,8 @@ export const APPCONFIG:RESTConfig = {
   providers: [
     AppService,
     LocalStorageService,
+    CommonService,
+    SecureService,
 
 
     {

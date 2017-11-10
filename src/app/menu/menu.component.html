@@ -6,9 +6,9 @@
     <button mat-button [routerLink]="['/']">DAHUB ADMIN</button>
 
     <button mat-button *ngIf="username != null || (username != '')"  style="width: 100px;">{{username}}</button>
-    <button mat-button  [hidden]="logged_in" style="width: 100px;" (click)="openLoginForm()" >Login</button>
-    <button mat-button  [hidden]="!logged_in" style="width: 100px;" (click)="processLogout()">Logout</button>
-    <button mat-button  [hidden]="logged_in" style="width: 100px;" (click)="openRegisterForm()" >Register</button>
+    <button mat-button  [hidden]="logged_in" style="width: 100px;" (click)="openLoginForm()">Connexion</button>
+    <button mat-button  [hidden]="!logged_in" style="width: 100px;" (click)="processLogout()">Déconnexion</button>
+    <button mat-button  [hidden]="logged_in" style="width: 100px;" (click)="openRegisterForm()">Inscription</button>
     <button mat-button  style="width: 100px;" [routerLink]="['/helper/usage']">Aide</button>
     <button mat-button  style="width: 100px;" [routerLink]="['/helper/contact']">Contacts</button>
 

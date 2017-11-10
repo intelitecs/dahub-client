@@ -1,0 +1,11 @@
+
+<div mat-dialog-container>
+  <h1 mat-dialog-title>{{title | uppercase}}</h1>
+  <mat-dialog-content>
+    <p class="message">{{message}} </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="button" mat-raised-button color="primary" (click)="dialogRef.close(true)">OK</button>&nbsp;&nbsp; &nbsp;
+    <button type="button" mat-raised-button color="warn" (click)="dialogRef.close(false)">Annuler</button>
+  </mat-dialog-actions>
+</div>
