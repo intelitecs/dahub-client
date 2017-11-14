@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {SecureService} from "../secure.service";
 import {LocalStorageService} from "ngx-webstorage";
 import {MatDialogRef} from "@angular/material/dialog";
+import {DialogService} from "../../dialog/dialog.services";
 
 
 @Component({
@@ -19,9 +20,11 @@ export class LoginComponent implements OnInit {
   public email: AbstractControl;
   public password: AbstractControl;
   public logged_in: boolean = false;
+  public loading: boolean = false;
 
 
-  constructor(public dialogRef: MatDialogRef<LoginComponent>, private localStorageService: LocalStorageService, private fb: FormBuilder, private router: Router, private secureService: SecureService) {
+  constructor(public dialogRef: MatDialogRef<LoginComponent>, private localStorageService: LocalStorageService, private fb: FormBuilder, private router: Router,
+              private secureService: SecureService, private dialogService: DialogService) {
     this.loginForm = this.fb.group({
       "email":["", [Validators.required]],
       "password":["", [Validators.required]],
@@ -30,11 +33,22 @@ export class LoginComponent implements OnInit {
 
   }
 
+
+
   ngOnInit() {
-    this.initLoginForm();
     if(this.logged_in){
       this.clearStorage();
     }
+    this.initLoginForm();
+
+  }
+
+  closeDialogOK(){
+    this.dialogRef.close(true);
+  }
+
+  closeDialogCancel(){
+    this.dialogRef.close(false);
   }
 
   initLoginForm(){
@@ -46,30 +60,26 @@ export class LoginComponent implements OnInit {
     this.localStorageService.clear("token");
     this.localStorageService.clear("username");
     this.localStorageService.clear("user_id");
+    this.localStorageService.clear("logged_in");
   }
 
   processLogin(user){
-    console.log("login data: ", user);
-    this.secureService.login(user).subscribe((response) => {
-      console.log("response of login: ", response);
+    console.log("user: ", user);
+    this.loading = true;
+    this.secureService.login(user).subscribe((response) =>{
+      this.loading = false;
       const token =response['auth_token'];
       const user_id = response['user_id'];
       const username = response['username'];
-      if (token){
+      if(token && user_id && username){
         this.localStorageService.store('token',token);
-        this.logged_in =true;
+        this.logged_in = true;
         this.localStorageService.store('logged_in', this.logged_in);
-      }
-      if (user_id){
-        this.localStorageService.store('user_id', user_id);
-      }
-      if (username){
         this.localStorageService.store('username', username);
+        this.localStorageService.store('user_id', user_id);
+      }else {
+        this.logged_in = false;
       }
-
-
-
-
     });
   }
 

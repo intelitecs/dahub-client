@@ -1,0 +1,55 @@
+.invalid{
+  color: red;
+  font-weight: bold;
+}
+
+.valid{
+  color: green;
+  font-weight: bold;
+}
+
+div.error{
+  height: 50px;
+  padding:5px;
+  text-align: justify;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fff;
+  background: #ec0909;
+}
+
+div.error i{
+  color:#fff;
+  font-weight: bold;
+}
+
+div.validation
+{
+  position: absolute;
+  top: 30px;
+  left: 260px;
+}
+
+mat-datepicker-toggle{
+  position: absolute;
+  top: 20px;
+  left: 290px;
+}
+
+
+
+div.instructions{
+  background: rgba(145, 168, 164, 0.2);
+  width: 290px;
+  margin-left: -50px;
+  margin-top: 50px;
+  color: blue;
+}
+
+.left-input{
+  margin-left: 60px;
+}
+form{
+  padding: 5px;
+}
+

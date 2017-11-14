@@ -20,6 +20,7 @@ const server = http.createServer(app);
 
  server.listen(port, onListening);
  server.on('error', onError);
+ //server.on('request',onRequest);
 
 // reload browser when code changes
 //reload(app);
@@ -94,4 +95,8 @@ function normalizePort(val) {
     debug('Listening on ' + bind);
     console.log('The server is running on ', server.address());
   }
+
+  function onRequest(request, response, next){
+    console.log(request.method + ': '+ request.url + '    '+ response.statusCode + '  '+ response.statusText);
+  };
 

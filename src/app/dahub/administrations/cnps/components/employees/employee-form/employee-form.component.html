@@ -1,3 +1,123 @@
-<p>
-  employee-form works!
-</p>
+
+<div class="col-md-9">
+  <h1>{{title}}</h1>
+  <br/>
+  <form class="form-panel" [formGroup]="employee" (ngSubmit)="processEmployeeCreation(employee.getRawValue())">
+
+    <div class="row">
+        <div class="col-md-5">
+          <div class="row">
+            <div class="col-md-11">
+              <label class="control-label">Nom</label>
+              <input type="text" autocomplete="off" size="60" (blur)="resetInstructions()" (focus)="showInstructions('lastname')" class="form-control" placeholder="Nom" [formControl]="lastname">
+            </div>
+            <div class="col-sm-1 validation" *ngIf="employee.get('lastname').dirty">
+                <mat-icon [ngClass]="{invalid: employee.get('lastname').invalid, valid: employee.get('lastname').valid}">check</mat-icon>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 left-input" >
+          <div class="row">
+            <div class="col-md-11">
+              <label class="control-label">Prénoms</label>
+              <input type="text" autocomplete="off" size="60" (blur)="resetInstructions()" (focus)="showInstructions('firstname')" class="form-control" placeholder="Nom" [formControl]="firstname">
+            </div>
+            <div class="col-sm-1 validation" *ngIf="employee.get('firstname').dirty">
+              <mat-icon [ngClass]="{invalid: employee.get('firstname').invalid, valid: employee.get('firstname').valid}">check</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    <br/>
+      <div class="row">
+        <div class="col-md-5">
+          <div class="row">
+            <div class="col-md-11">
+              <label class="control-label">Date de naissance</label>
+              <input type="text" autocomplete="off" [matDatepicker]="birthdatepicker" size="60" (blur)="resetInstructions()" (focus)="showInstructions('birthdate')" class="form-control" placeholder="Date de naissance" [formControl]="birthdate">
+              <mat-datepicker-toggle [for]="birthdatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #birthdatepicker></mat-datepicker>
+            </div>
+            <div class="col-sm-1 validation" *ngIf="employee.get('birthdate').dirty">
+              <mat-icon [ngClass]="{invalid: employee.get('birthdate').invalid, valid: employee.get('birthdate').valid}">check</mat-icon>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 left-input">
+          <div class="row">
+            <div class="col-md-11">
+              <label class="control-label">Lieu de naissance</label>
+              <input type="text" autocomplete="off" size="60" (blur)="resetInstructions()" (focus)="showInstructions('birthplace')" class="form-control" placeholder="Lieu de naissance" [formControl]="birthplace">
+            </div>
+            <div class="col-sm-1 validation" *ngIf="employee.get('birthplace').dirty">
+              <mat-icon [ngClass]="{invalid: employee.get('birthplace').invalid, valid: employee.get('birthplace').valid}">check</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-5">
+          <div class="row">
+            <div class="col-md-11">
+              <label class="control-label">N° Téléphone Fixe</label>
+              <input type="tel" autocomplete="off" size="60" (blur)="resetInstructions()" (focus)="showInstructions('phone')" class="form-control" placeholder="Téléphone fixe" [formControl]="phone">
+            </div>
+            <div class="col-sm-1 validation" *ngIf="employee.get('phone').dirty">
+              <mat-icon [ngClass]="{invalid: employee.get('phone').invalid, valid: employee.get('phone').valid}">check</mat-icon>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 left-input">
+          <div class="row">
+            <div class="col-md-11">
+              <label class="control-label">N° Téléphone Mobile</label>
+              <input type="tel" autocomplete="off" size="60" (blur)="resetInstructions()" (focus)="showInstructions('mobilePhone')" class="form-control" placeholder="Téléphone mobile" [formControl]="mobilePhone">
+            </div>
+            <div class="col-sm-1 validation" *ngIf="employee.get('mobilePhone').dirty">
+              <mat-icon [ngClass]="{invalid: employee.get('mobilePhone').invalid, valid: employee.get('mobilePhone').valid}">check</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <br/>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-11">
+            <label class="control-label">Adresse email</label>
+            <input type="email" autocomplete="off" size="60" (blur)="resetInstructions()" (focus)="showInstructions('email')" class="form-control" placeholder="Adresse email" [formControl]="email">
+          </div>
+          <div class="col-sm-1 validation" *ngIf="employee.get('email').dirty">
+            <mat-icon [ngClass]="{invalid: employee.get('email').invalid, valid: employee.get('email').valid}">check</mat-icon>
+          </div>
+        </div>
+        <div class="row error" *ngIf="employee.get('email').invalid  && employee.get('email').touched">
+          <div class="col-md-10">
+            <i *ngIf="employee.get('email').hasError('required')">Adresse email obligatoire</i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-7">
+        <button mat-raised-button [color]="'primary'" [disabled]="!employee.valid">Enregistrer</button>
+        <button mat-raised-button type="reset" [color]="'warn'" (click)="backToEmployees()">Annulerer</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+<div class="col-md-3">
+  <div class="instructions" id="instructions" *ngIf="instructions.length !== 0">
+    <h3>Saisie valide</h3>
+    <div class="instruction-phrase" *ngFor="let instruction of instructions; let index= index">
+      <i>  {{index + 1}} :  {{ instruction}}</i>
+    </div>
+  </div>
+</div>
+

@@ -5,6 +5,7 @@ import {RegisterComponent} from "../dahub/secure/register/register.component";
 import {AppService} from "../app.service";
 import {LocalStorageService} from "ngx-webstorage";
 import {SecureService} from "../dahub/secure/secure.service";
+import {DialogService} from "../dahub/dialog/dialog.services";
 
 
 @Component({
@@ -18,7 +19,7 @@ export class DahubMenuComponent  implements OnInit{
    public username: string = "";
    public logged_in: boolean = false;
 
-   constructor(private appService: AppService, private localStorageService: LocalStorageService){
+   constructor(private appService: AppService, private dialogService: DialogService, private localStorageService: LocalStorageService){
 
    }
     @Output()
@@ -35,7 +36,12 @@ export class DahubMenuComponent  implements OnInit{
 
       this.localStorageService.observe('logged_in').subscribe((logged_in) =>{
         this.logged_in = logged_in;
-      })
+      });
+      const token = this.localStorageService.retrieve('token');
+      if (token){
+        this.logged_in = true;
+        this.username = this.localStorageService.retrieve('username');
+      }
     }
 
     openLoginForm(){
@@ -50,6 +56,8 @@ export class DahubMenuComponent  implements OnInit{
       this.localStorageService.clear("token");
       this.localStorageService.clear("username");
       this.localStorageService.clear("user_id");
+      this.localStorageService.clear("logged_in");
       this.localStorageService.store('logged_in', false);
+
     }
 }

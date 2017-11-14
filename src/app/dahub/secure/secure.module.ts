@@ -7,8 +7,10 @@ import {RouterModule} from "@angular/router";
 import {secureRouting} from "./secure.routing";
 import {SecureComponent} from "./secure.component";
 import {SecureService} from "./secure.service";
+import {LoadingModule} from 'ngx-loading';
 import {
-  MatAutocompleteModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule,
+  MatAutocompleteModule, MatButtonModule,
+  MatDialogModule, MatFormFieldModule, MatIconModule, MatProgressSpinnerModule,
   MatSelectModule
 } from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -16,7 +18,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 @NgModule({
   id: 'app-secure',
   imports: [
-    CommonModule, RouterModule, secureRouting, MatButtonModule, MatIconModule, MatSelectModule , MatAutocompleteModule, MatFormFieldModule, MatDialogModule, ReactiveFormsModule, FormsModule
+    CommonModule, RouterModule, secureRouting, MatButtonModule, MatIconModule,
+    MatSelectModule, MatAutocompleteModule, MatFormFieldModule, MatDialogModule,
+    ReactiveFormsModule, FormsModule, MatProgressSpinnerModule, LoadingModule
   ],
   declarations: [SecureComponent,LoginComponent, RegisterComponent, ResetPasswordComponent],
   exports: [

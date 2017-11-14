@@ -14,21 +14,21 @@
 
               <mat-divider></mat-divider>
 
-              <mat-list-item [routerLink]="['administrations/cnps']">
+              <mat-list-item *ngIf="logged_in" [routerLink]="['administrations/cnps']">
                   <h1 matLine >CNPS</h1>
                   <button mat-icon-button>
                       <mat-icon>attachment</mat-icon>
                   </button>
               </mat-list-item>
 
-              <mat-divider></mat-divider>
+            <!-- <mat-divider></mat-divider>
 
-              <mat-list-item>
-                  <h1 matLine >DACLOUD</h1>
-                  <button mat-icon-button>
-                      <mat-icon>cloud</mat-icon>
-                  </button>
-              </mat-list-item>
+            <mat-list-item>
+                <h1 matLine >DACLOUD</h1>
+                <button mat-icon-button>
+                    <mat-icon>cloud</mat-icon>
+                </button>
+            </mat-list-item>-->
 
           </mat-nav-list>
       </mat-sidenav>

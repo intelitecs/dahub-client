@@ -6,13 +6,22 @@ import {CnpsComponent} from "./cnps.component";
 import {EmployeesListComponent} from "./components/employees/employees-list/employees-list.component";
 import {EmployeeComponent} from "./components/employees/employee/employee.component";
 import {EmployeeFormComponent} from "./components/employees/employee-form/employee-form.component";
-import {MatTabsModule} from "@angular/material";
+import {
+  MatButtonModule, MatButtonToggleModule, MatDatepickerModule, MatIconModule, MatTableModule,
+  MatTabsModule
+} from "@angular/material";
+import {LoadingModule} from 'ngx-loading';
 import { CompanyComponent } from './components/company/company.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CnpsService} from "./cnps.service";
+import {AuthenticateGuard} from "./Authenticate.guard";
 
 @NgModule({
   id: 'app-cnps',
   imports:[
-    CommonModule, cnpsRouting, MatTabsModule
+    CommonModule, cnpsRouting, MatTabsModule, ReactiveFormsModule,
+    FormsModule, MatButtonModule, MatButtonToggleModule,
+    MatDatepickerModule, MatTableModule, MatIconModule, LoadingModule
   ],
   exports:[
 
@@ -22,7 +31,8 @@ import { CompanyComponent } from './components/company/company.component';
     EmployeeComponent, EmployeeFormComponent, CompanyComponent
   ],
   providers:[
-
+    CnpsService,
+    AuthenticateGuard
   ],
   entryComponents:[
 

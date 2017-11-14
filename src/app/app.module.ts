@@ -3,14 +3,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {LOCALE_ID, NgModule} from '@angular/core';
 import {
   MatButtonModule, MatToolbarModule, MatSidenavModule,
-  MatIconModule, MatListModule, MatMenuModule, MatDialogModule, MatDialogRef
-} from "@angular/material";
+  MatIconModule, MatListModule, MatNativeDateModule, MatMenuModule, MatDialogModule, MatDialogRef,
+  MatProgressSpinnerModule
+} from '@angular/material';
 
-  import {RouterModule} from "@angular/router";
+  import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import {DahubMenuComponent} from './menu/menu.component';
-import {appRouting} from "./app.routing";
+import {appRouting} from './app.routing';
 import {DashboardModule} from "./dahub/dashboard/dashboard.module";
 import {DahubModule} from "./dahub/dahub.module";
 import {ErrorsModule} from "./dahub/errors/errors.module";
@@ -21,11 +22,11 @@ import {SecureModule} from "./dahub/secure/secure.module";
 import {HelperModule} from "./dahub/helper/helper.module";
 import {AppService} from "./app.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-//import {LocalStorageService} from "ngx-webstorage/dist/services";
 import {LocalStorageService} from "ngx-webstorage";
 import {CommonService} from "./common.service";
 import {SecureService} from "./dahub/secure/secure.service";
 import {DahubDialogModule} from "./dahub/dialog/dialog.module";
+import {HttpRequestInterceptor} from "./app.interceptor";
 
 export interface RESTConfig{
   REST_SERVER_HOST: string;
@@ -53,9 +54,9 @@ export const APPCONFIG:RESTConfig = {
     ErrorsModule, CnpsModule, AdminModule,
     BrowserModule, BrowserAnimationsModule,
     MatSidenavModule,RouterModule, SecureModule,
-    HelperModule, MatButtonModule,MatToolbarModule,
+    HelperModule, MatButtonModule,MatToolbarModule,MatProgressSpinnerModule,
     MatIconModule, MatListModule, MatMenuModule,
-    MatDialogModule, HttpClientModule, DahubDialogModule
+    MatDialogModule, HttpClientModule, DahubDialogModule,MatNativeDateModule
 
   ],
   exports:[
@@ -72,6 +73,12 @@ export const APPCONFIG:RESTConfig = {
       provide: 'AppConfig', useValue: APPCONFIG
     },
     { provide: LOCALE_ID, useValue: "fr-FR" },
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestInterceptor,
+      multi: true
+    }
 
 
   ],

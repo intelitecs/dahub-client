@@ -13,7 +13,7 @@ export class AppService{
   public showLoginForm(title: string, message: string): Observable<boolean> {
     let dialogRef: MatDialogRef<LoginComponent>;
     dialogRef = this.dialog.open(LoginComponent, {
-      height: "400px", width: "700px",
+      height: "500px", width: "700px",
       position: { top: "30px", left: "120px" }
 
     });
@@ -28,7 +28,7 @@ export class AppService{
   public showRegisterForm(title: string, message: string): Observable<boolean> {
     let dialogRef: MatDialogRef<RegisterComponent>;
     dialogRef = this.dialog.open(RegisterComponent, {
-      height: "450px", width: "900px",
+      height: "500px", width: "900px",
       position: {top: "30px", left: "120px"}
 
     });
